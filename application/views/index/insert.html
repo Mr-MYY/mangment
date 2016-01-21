@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+
+<body>
+<form name="insert" method="post" action="<?php echo site_url('index_main/inserting');?>">
+<table class="table">
+	<tr>
+	  <td class="th" colspan="12">新增设备</td>
+	</tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>硬件类型</strong></td>
+    	<td><label for="type"></label>
+    	  <select name="type" id="type">
+  	    </select></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>型号规格</strong></td>
+    	<td><label for="xhgg"></label>
+   	    <input type="text" name="xhgg" id="xhgg"></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>S/N编号</strong></td>
+    	<td><label for="sn"></label>
+   	    <input type="text" name="sn" id="sn"></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>资产编号</strong></td>
+    	<td><label for="zcbh"></label>
+   	    <input type="text" name="zcbh" id="zcbh"></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>使用状态</strong></td>
+    	<td><label for="zt"></label>
+    	  <select name="zt" id="zt">
+  	    </select></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>金额</strong></td>
+    	<td><label for="je"></label>
+   	    <input type="text" name="je" id="je"></td>
+    </tr>
+    <tr>
+    	<td align="center" width="20%"><strong>到货时间</strong></td>
+    	<td><label for="dhsj"></label>
+   	    <input type="text" name="dhsj" id="dhsj"></td>
+    </tr>
+    <tr>
+    	<td align="center" width="20%"><strong>安装地点</strong></td>
+    	<td><label for="azdd"></label>
+   	    <input type="text" name="dd" id="dd"></td>
+    </tr>
+    <tr>
+    	<td align="center" width="20%"><strong>安装日期</strong></td>
+    	<td><label for="azsj"></label>
+   	    <input type="text" name="azsj" id="azsj"></td>
+    </tr>
+    <tr>
+   	  <td align="center" width="20%"><strong>发票号</strong></td>
+    	<td><label for="fph"></label>
+   	    <input type="text" name="fph" id="fph"></td>
+    </tr>
+     <tr>
+   	   <td align="center" width="20%"><strong>合同号</strong></td>
+    	<td><label for="hth"></label>
+   	    <input type="text" name="hth" id="hth"></td>
+    </tr>
+     <tr>
+   	   <td align="center" width="20%"><strong>备注</strong></td>
+    	<td><label for="bz"></label>
+   	    <input type="text" name="bz" id="bz"></td>
+    </tr>
+    <tr>
+    	<td colspan="12" align="right"><input type="submit" class="input_button" name="insert" id="insert" value="新增"></td>
+    </tr>
+   
+</table>  
+    
+	  
+</form>
+
+
+</body>
+</html>
