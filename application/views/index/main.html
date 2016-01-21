@@ -1,10 +1,72 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>无标题文档</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
 </head>
 
 <body>
+<form name="main" method="post" action="">
+<table class="table">
+	<tr>
+	  <td class="th" colspan="12">资产总览</td>
+	</tr>
+	<tr>
+	  <td align="center"><strong>硬件类型</strong></td>
+	  <td align="center"><strong>型号规格</strong></td>
+      <td align="center"><strong>S/N编号</strong></td>
+      <td align="center"><strong>资产编号</strong></td>
+      <td align="center"><strong>使用状态</strong></td>
+      <td align="center"><strong>金额</strong></td>
+      <td align="center"><strong>到货时间</strong></td>
+      <td align="center"><strong>安装地点</strong></td>
+   	  <td align="center"><strong>安装日期</strong></td>
+      <td align="center"><strong>发票号</strong></td>
+      <td align="center"><strong>合同号</strong></td>
+      <td align="center"><strong>备注</strong></td>
+	</tr>
+    <tr>
+    	<td align="center"><label for="select"></label>
+    	  <select name="type" id="type">
+  	    </select></td>
+        <td align="center"><label for="xhgg"></label>
+        <input type="text" name="xhgg" id="xhgg"></td>
+        <td align="center"><label for="sn"></label>
+        <input type="text" name="sn" id="sn"></td>
+        <td align="center"><label for="zcbh"></label>
+        <input type="text" name="zcbh" id="zcbh"></td>
+        <td align="center"><label for="zt"></label>
+          <select name="zt" id="zt">
+        </select></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"><label for="dd"></label>
+        <input type="text" name="dd" id="dd"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+        <td align="center"></td>
+      <td align="center"><input type="submit" class="input_button" value="查询"/></td>
+    </tr>
+
+
+</table>
+
+</form>
 </body>
 </html>
