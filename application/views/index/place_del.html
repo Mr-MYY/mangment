@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+<body>
+<form name="place_del" method="post" action="<?php echo site_url('index_place/deleting/'.$place[0]['pid']);?>">
+<table class="table">
+   <tr>
+	  <td class="th" colspan="12">删除位置信息</td>
+   </tr>
+   <tr>
+   		<td width="20%" align="center">位置ID</td>
+   		<td><?php echo $place[0]['pid']; ?></td>
+   </tr>
+   <tr>
+   		<td width="20%" align="center">位置名称</td>
+   		<td><?php echo $place[0]['pname'];?></td>
+   </tr>
+   <tr>
+   		<td></td>
+        <td><input type="submit" class="input_button" name="del" value="确认删除"></td>
+   </tr>
+</table>
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

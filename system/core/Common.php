@@ -848,4 +848,28 @@ if ( ! function_exists('function_usable'))
 
 		return FALSE;
 	}
+	
+	/**
+ * 成功提示函数
+ * @param  [type] $url [跳转地址]
+ * @param  [type] $msg [提示信息]
+ * @return [type]      [description]
+ */
+function success($url, $msg){
+	header('Content-Type:text/html;charset=utf-8');
+	$url = site_url($url);
+	echo "<script type='text/javascript'>alert('$msg');location.href='$url'</script>";
+	die;
+}
+
+/**
+ * 错误提示函数
+ * @param  [type] $msg [提示信息]
+ * @return [type]      [description]
+ */
+function error($msg){
+	header('Content-Type:text/html;charset=utf-8');
+	echo "<script type='text/javascript'>alert('$msg');window.history.back();</script>";
+	die;
+}
 }

@@ -21,8 +21,26 @@ $config = array(
 					'label' => '安装时间',
 					'rules' => 'exact_length[8]|numeric'
 					)
+				),
+			'type' => array(
+				array(
+					'field' => 'tname',
+					'label' => '设备类型',
+					'rules' => 'required'
+				
 				)
-				);
+				),
+			'place' => array(
+				array(
+					'field' => 'pname',
+					'label' => '位置信息',
+					'rules' => 'required'
+				
+				)
+			)
+				
+		
+	);
 				
 
 
