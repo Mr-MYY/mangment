@@ -39,6 +39,13 @@ class Type_model extends CI_Model  //类型模型，用于进行模型的相关�
 	}
 	
 	
+	public function search_type($data)       //根据类型名称定位类型，采用模糊搜索
+	{
+		$this->db->or_like($data);
+		$result = $this->db->get('type')->result_array();
+		return $result;
+	}
+	
 	
 	
 	

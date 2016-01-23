@@ -66,6 +66,29 @@ class Index_place extends CI_Controller                      //类型控制器�
 		}
 	}
 	
+	public function search()                                  //查询按钮，用于点击查询按钮后显示内容,采用模糊搜素
+	{
+		if ($this->input->post('pname') == FALSE)
+		{
+			error('没有输入查询信息');
+		}
+		else
+		{
+			$data = array('pname' => $this->input->post('pname'));
+			if (!($this->place->search_place($data)))
+			{
+				error('未找到相关数据');
+			}
+			else
+			{
+				$result['place'] = $this->place->search_place($data);
+				$this->load->view('index/place_main.html',$result);
+			}
+		}
+		
+		
+	}
+	
 	
 	
 	

@@ -64,6 +64,7 @@ $lang['form_validation_less_than']			= '{field} 必须小于 {field}.';
 $lang['form_validation_less_than_equal_to']	= 'The {field} field must contain a number less than or equal to {param}.';
 $lang['form_validation_greater_than']		= '{field} 必须大于 {field}.';
 $lang['form_validation_greater_than_equal_to']	= 'The {field} field must contain a number greater than or equal to {param}.';
+$lang['form_validation_in_list']            = '无效的 {field}';
 
 /* End of file form_validation_lang.php */
 /* Location: ./system/language/chinese/form_validation_lang.php */

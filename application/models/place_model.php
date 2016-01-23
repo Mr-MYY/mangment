@@ -38,6 +38,13 @@ class place_model extends CI_Model  //类型模型，用于进行模型的相关
 		return $result;
 	}
 	
+	public function search_place($data)       //根据地点名称定位地点，采用模糊搜索
+	{
+		$this->db->like($data);
+		$result = $this->db->get('place')->result_array();
+		return $result;
+	}
+	
 	
 	
 	

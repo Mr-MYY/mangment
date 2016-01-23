@@ -29,68 +29,83 @@
 	</tr>
     <tr>
    	  <td align="center" width="20%"><strong>硬件类型</strong></td>
-    	<td><label for="type"></label>
+    	<td width="20%"><label for="type"></label>
     	  <select name="type" id="type">
-  	    </select></td>
+          <?php foreach($type as $t):?>
+          <option value="<?php echo $t['tid']?>"><?php echo $t['firm']."--".$t['tname']?></option>
+          <?php endforeach;?>
+          </select></td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>型号规格</strong></td>
     	<td><label for="xhgg"></label>
-   	    <input type="text" name="xhgg" id="xhgg"></td>
+   	    <input type="text" name="xhgg" id="xhgg" value="<?php echo set_value('xhgg');?>"></td>
+        <td><?php echo form_error('xhgg','<span style="color:#F00">','</span>');?></td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>S/N编号</strong></td>
     	<td><label for="sn"></label>
-   	    <input type="text" name="sn" id="sn"></td>
+   	    <input type="text" name="sn" id="sn" value="<?php echo set_value('sn');?>"></td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>资产编号</strong></td>
     	<td><label for="zcbh"></label>
-   	    <input type="text" name="zcbh" id="zcbh"></td>
+   	    <input type="text" name="zcbh" id="zcbh" value="<?php echo set_value('zcbh');?>"></td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>使用状态</strong></td>
     	<td><label for="zt"></label>
     	  <select name="zt" id="zt">
+          <option value="0">使用中</option>
+          <option value="1">库存</option>
+          <option value="2">报废</option>
   	    </select></td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>金额</strong></td>
     	<td><label for="je"></label>
-   	    <input type="text" name="je" id="je"></td>
+   	    <input type="text" name="je" id="je" value="<?php echo set_value('je');?>"></td>
+        <td><?php echo form_error('je','<span style="color:#F00">','</span>');?></td>
     </tr>
     <tr>
     	<td align="center" width="20%"><strong>到货时间</strong></td>
     	<td><label for="dhsj"></label>
-   	    <input type="text" name="dhsj" id="dhsj"></td>
+   	    <input type="text" name="dhsj" id="dhsj" value="<?php echo set_value('dhsj');?>"></td>
+        <td><?php echo form_error('dhsj','<span style="color:#F00">','</span>');?>例：20160101</td>
     </tr>
     <tr>
     	<td align="center" width="20%"><strong>安装地点</strong></td>
     	<td><label for="azdd"></label>
-   	    <input type="text" name="dd" id="dd"></td>
+    	  <label for="pname"></label>
+    	  <select name="pname" id="pname">
+          <?php foreach($place as $p):?>
+          <option value="<?php echo $p['pid']?>"><?php echo $p['pname']?></option>
+          <?php endforeach;?>
+  	    </select></td>
     </tr>
     <tr>
     	<td align="center" width="20%"><strong>安装日期</strong></td>
     	<td><label for="azsj"></label>
-   	    <input type="text" name="azsj" id="azsj"></td>
+   	    <input type="text" name="azsj" id="azsj" value="<?php echo set_value('azsj');?>"></td>
+         <td><?php echo form_error('azsj','<span style="color:#F00">','</span>');?>例：20160101</td>
     </tr>
     <tr>
    	  <td align="center" width="20%"><strong>发票号</strong></td>
     	<td><label for="fph"></label>
-   	    <input type="text" name="fph" id="fph"></td>
+   	    <input type="text" name="fph" id="fph" value="<?php echo set_value('fph');?>"></td>
     </tr>
      <tr>
    	   <td align="center" width="20%"><strong>合同号</strong></td>
     	<td><label for="hth"></label>
-   	    <input type="text" name="hth" id="hth"></td>
+   	    <input type="text" name="hth" id="hth" value="<?php echo set_value('hth');?>"></td>
     </tr>
      <tr>
    	   <td align="center" width="20%"><strong>备注</strong></td>
     	<td><label for="bz"></label>
-   	    <input type="text" name="bz" id="bz"></td>
+   	    <input type="text" name="bz" id="bz" value="<?php echo set_value('bz');?>"></td>
     </tr>
     <tr>
-    	<td colspan="12" align="right"><input type="submit" class="input_button" name="insert" id="insert" value="新增"></td>
+    	<td colspan="2" align="right"><input type="submit" class="input_button" name="insert" id="insert" value="新增"></td>
     </tr>
    
 </table>  

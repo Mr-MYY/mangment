@@ -7,11 +7,6 @@ $config = array(
 					'rules' => 'required'
 					),
 				array(
-					'field' => 'dd',
-					'label' => '安装地点',
-					'rules' => 'required'
-					),
-				array(
 					'field' => 'dhsj',
 					'label' => '到货时间',
 					'rules' => 'exact_length[8]|numeric'
@@ -20,12 +15,23 @@ $config = array(
 					'field' => 'azsj',
 					'label' => '安装时间',
 					'rules' => 'exact_length[8]|numeric'
+					),
+				array(
+					'field' => 'je',
+					'label' => '金额',
+					'rules' => 'numeric'
 					)
 				),
 			'type' => array(
 				array(
 					'field' => 'tname',
 					'label' => '设备类型',
+					'rules' => 'required'
+				
+				),
+				array(
+					'field' => 'firm',
+					'label' => '厂商',
 					'rules' => 'required'
 				
 				)

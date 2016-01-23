@@ -27,6 +27,12 @@
 	  <td class="th" colspan="12">新增设备类型</td>
 	</tr>
     <tr>
+    <td width="20%" align="center"><strong>厂商</strong></td>
+    <td width="20%"><label for="firm"></label>
+      <input type="text" name="firm" id="firm"><?php echo set_value('firm');?></td>
+    <td><span style="color:#F00"><?php echo form_error('firm')?></span></td>
+    </tr>
+    <tr>
     <td align="center" width="20%"><strong>类型</strong></td>
     <td width="20%"><label for="tname"></label>
       <input type="text" name="tname" id="tname"><?php echo set_value('tname');?></td>

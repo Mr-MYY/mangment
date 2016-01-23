@@ -21,18 +21,28 @@
 	</style>
 </head>
 <body>
-<form name="type" method="post" action="">
+<form name="type" method="post" action="<?php echo site_url('index_type/search');?>">
 <table class="table">
 	<tr>
 	  <td class="th" colspan="12">查看所有设备类型</td>
 	</tr>
     <tr>
-    	<td align="center"><label for="tname"></label>
+    	<td align="center"><strong>厂商</strong></td>
+        <td align="center"><strong>类型</strong></td>
+        <td align="center"><strong>操作</strong></td>
+    </tr>
+    
+    <tr>
+    	
+        <td align="center"><label for="firm"></label>
+        <input type="text" name="firm" id="firm"></td>
+        <td align="center"><label for="tname"></label>
    	    <input type="text" name="tname" id="tname"></td>
         <td><input class="input_button" type="submit" name="select" id="select_type" value="查询"></td>
     </tr>
     <?php foreach($type as $v):?>
     <tr>
+    <td width="20%" align="center"><?php echo $v['firm'];?></td>
    <td width="20%" align="center"> <?php echo $v['tname'];?></td>
    <td>
    <a href="<?php echo site_url('index_type/delete/'.$v['tid']);?>">[删除]</a>

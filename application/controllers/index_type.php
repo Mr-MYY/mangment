@@ -5,6 +5,7 @@ class Index_type extends CI_Controller                      //类型控制器，
 	public function __construct()
 	{
 		parent :: __construct();
+		//$this->output->enable_profiler(TRUE);
 		$this->load->model('type_model','type');	       //默认载入类型数据库
 	}
 	
@@ -29,7 +30,7 @@ class Index_type extends CI_Controller                      //类型控制器，
 		}
 		else
 		{
-			$data = array('tname' => $this->input->post('tname'));  
+			$data = array('tname' => $this->input->post('tname'),'firm' => $this->input->post('firm'));  
 			if ($this->type->check($data) == FALSE)   //插入时的名称校验，用来查询类型库中是否已有此类型,如果有则不允许插入
 			{
 				$this->type->insert_type($data);
@@ -64,6 +65,34 @@ class Index_type extends CI_Controller                      //类型控制器，
 		{
 			success('index_type/main','该类型已被使用，无法删除');
 		}
+	}
+	
+	public function search()                                  //查询按钮，用于点击查询按钮后显示内容,采用模糊搜素
+	{
+		if (($this->input->post('tname') || $this->input->post('firm')) == FALSE)
+		{
+			error('没有输入查询信息');
+		}
+		else
+		{
+			//不做判断直接载入会出现一项不输则选择出全部数据的情况，故加以判断，如果未输入查询数据，则post得到的结果是null
+			$data = array(
+					'tname' => ($this->input->post('tname') == NULL)? 'null' :$this->input->post('tname'),
+					'firm' => ($this->input->post('firm') == NULL)? 'null' :$this->input->post('firm')
+						);
+			if (!($this->type->search_type($data)))
+			{
+				success('index_type/main','未找到相关数据');
+			}
+			else
+			{
+				$result['type'] = $this->type->search_type($data);
+				print_r($result);
+				$this->load->view('index/type_main.html',$result);
+			}
+		}
+		
+		
 	}
 	
 	
