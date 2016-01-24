@@ -63,7 +63,36 @@
         <td align="center"></td>
       <td align="center"><input type="submit" class="input_button" value="查询"/></td>
     </tr>
-
+    <?php foreach($main as $m):?>
+    <tr>
+    <td align="center"><?php echo $m['firm']."--".$m['tname']; ?></td>
+    <td align="center"><?php echo $m['xhgg']; ?></td>
+    <td align="center"><?php echo $m['sn']; ?></td>
+    <td align="center"><?php echo $m['zcbh']; ?></td>
+    <td align="center">
+                      <?php 
+                        switch ($m['zt']) {
+                           case 0:
+                             echo "使用中";
+                             break;
+                           case 1:
+                             echo "库存";
+                             break;
+                           case 2:
+                             echo "报废";
+                             break;
+                                          }   
+                      ?>
+    </td>
+    <td align="center"><?php echo $m['je']; ?></td>
+    <td align="center"><?php echo $m['dhsj']; ?></td>
+    <td align="center"><?php echo $m['pname']; ?></td>
+    <td align="center"><?php echo $m['azsj']; ?></td>
+    <td align="center"><?php echo $m['fph']; ?></td>
+    <td align="center"><?php echo $m['hth']; ?></td>
+    <td align="center"><?php echo $m['bz']; ?></td>
+    </tr>
+    <?php endforeach;?>
 
 </table>
 

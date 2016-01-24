@@ -4,8 +4,13 @@ class Main_model extends CI_Model
 {
 	public function select_main()               //主界面显示模型，用于把状态不是作废的设备显示出来；
 	{
+		$this->db->select('main.*,pname,tname,firm');
 		$this->db->where('zt !=',3);
-		$this->db->group_by(array('pid','tid'));
+		$this->db->order_by('pid','ASC');
+		$this->db->order_by('tid','ASC');
+		$this->db->order_by('xhgg','ASC');
+		$this->db->join('type','main.tid = type.tid');
+		$this->db->join('place','main.pid= place.pid');
 		$result = $this->db->get('main')->result_array();
 		return $result;
 	}
