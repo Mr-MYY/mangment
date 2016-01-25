@@ -10,7 +10,6 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->model('place_model','place');   //默认载入类型数据模型
 		$this->load->helper('form');               //默认载入表单辅助函数
 		$this->load->library('form_validation');   //默认载入表单验证类
-		$this->output->enable_profiler(TRUE);
 	}
 	
 	public function index()
@@ -21,6 +20,7 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 	public function main()                        //加载主界面视图
 	{
 		$data['main'] = $this->main->select_main();
+		$data['type'] = $this->main->select_distinct_type();
 		// print_r($data);die;
 		$this->load->view('index/main.html',$data);
 	}
@@ -67,6 +67,58 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 									
 		}
 	}
+/**
+ * [check 查询办法：用于点击查询按钮后产生的事件]
+ * 
+ */
+	public function check()
+	{
+		$type = $this->input->post('type');
+		$xhgg = $this->input->post('xhgg');
+		$sn = $this->input->post('sn');
+		$zcbh = $this->input->post('zcbh');
+		$pid = $this->input->post('pid');
+		$zt = $this->input->post('zt');
+
+		$sqlcondition = array(
+							'main.tid' => $type,
+							'xhgg'=> $xhgg,
+							'sn'  => $sn,
+							'zcbh'=> $zcbh,
+							'main.pid' => $pid,
+							'zt'  => $zt
+								);
+		if ($this->main->check_main($sqlcondition))
+		{
+			$data['main'] = $this->main->check_main($sqlcondition);
+			$data['type'] = $this->main->select_distinct_type();
+			$this->load->view('index/main.html',$data);
+		}
+		else
+		{
+			success('index_main/main','未找到相关数据');
+		}
+	}
+
+	/**
+	 * [click_type 在主界面点击类型时的事件，点击后进入设备编辑页面]
+	 * @return [type] [description]
+	 */
+	public function click_type()
+	{
+		$this->output->enable_profiler(TRUE);
+		$id = $this->uri->segment(3);
+		$sqlcondition = array(
+							'mid' => $id
+							);
+		$data['main'] = $this->main->select_edit($sqlcondition);
+		$data['type'] = $this->type->select_all_type();
+		$data['place']= $this->place->select_all_place();
+		// print_r($data);die;
+		$this->load->view('index/main_edit.html',$data);
+	}
+
+
 	
 	
 	

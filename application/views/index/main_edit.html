@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+<body>
+<form name="main_edit" method="post" action="">
+	<table class="table">
+		<tr>
+			<td class="th" colspan="12">编辑资产</td>
+		</tr>
+		<tr>
+			<td width="20%" align="center">硬件类型</td>
+			<td align="center">
+				<select name="type" id="type">
+					<?php foreach($type as $t): ?>
+					<option value="<?php echo $t['tid'] ?>"><?php echo $t['firm']."--".$t['tname']; ?></option>
+				<?php endforeach; ?>
+				</select>
+			</td>
+			<td width="20%" align="center">型号规格</td>
+			<td align="center"><input type="text" name="xhgg" value="<?php echo $main[0]['xhgg'];?>"></td> 
+		</tr>
+		<tr>
+			<td align="center">S/N编号</td>
+			<td align="center"><input type="text" name="sn" value="<?php echo $main[0]['sn']; ?>"></td>
+			<td align="center">资产编号</td>
+			<td align="center"><input type="text" name="zcbh" value="<?php echo $main[0]['zcbh']; ?>"></td> 
+		</tr>
+		<tr>
+			<td align="center">使用状态</td>
+			<td align="center">
+				<select name="zt" id="zt">
+					<option value="0">使用中</option>
+            		<option value="1">库存</option>
+            		<option value="2">报废</option>
+            		<option value="3">作废</option>
+				</select>
+			</td>
+			<td align="center">金额</td>
+			<td align="center"><input type="text" name="je" value="<?php echo $main[0]['je']; ?> "></td> 
+		</tr>
+		<tr>
+			<td align="center">到货时间</td>
+			<td align="center"><input type="text" name="dhsj" value="<?php echo $main[0]['dhsj'] ?>"></td>
+			<td align="center">安装地点</td>
+			<td align="center">
+				<select name="place" id="place">
+					<?php foreach($place as $p): ?>
+					<option value="<?php echo $p['pid'] ?>"><?php echo $p['pname']; ?></option>
+				<?php endforeach; ?>
+				</select>
+			</td> 
+		</tr>
+		<tr>
+			<td align="center">安装时间</td>
+			<td align="center"><input type="text" name="azsj" value="<?php echo $main[0]['azsj'] ?> "></td>
+			<td align="center">发票号</td>
+			<td align="center"><input type="text" name="fph" value="<?php echo $main[0]['fph']?>"></td> 
+		</tr>
+		<tr>
+			<td align="center">合同号</td>
+			<td align="center"><input type="text" name="hth" value="<?php echo $main[0]['hth']; ?>"></td>
+			<td align="center">备注</td>
+			<td align="center"><input type="text" name="bz" value="<?php echo $main[0]['bz'] ?>"></td> 
+		</tr>
+		<tr>
+			<td colspan="4" align="center"><input type="submit" class="input_button" value="确认更改"></td>
+		</tr>
+		
+	</table>
+</form>
+
+</body>
+</html>

@@ -5,7 +5,6 @@ class Index_type extends CI_Controller                      //类型控制器，
 	public function __construct()
 	{
 		parent :: __construct();
-		//$this->output->enable_profiler(TRUE);
 		$this->load->model('type_model','type');	       //默认载入类型数据库
 	}
 	
@@ -54,7 +53,7 @@ class Index_type extends CI_Controller                      //类型控制器，
 	
 	public function deleting()                                //删除方法，对视图删除的数据库操作在此执行；
 	{
-		$tid = $this->uri->segment(3);
+		$tid  = $this->uri->segment(3);
 		$data = array('tid' => $tid);
 		if ($this->type->count_type($data) == FALSE)         //判断主表是否含有即将要删除的类型，如果有，则不允许用户删除
 		{
@@ -78,7 +77,7 @@ class Index_type extends CI_Controller                      //类型控制器，
 			//不做判断直接载入会出现一项不输则选择出全部数据的情况，故加以判断，如果未输入查询数据，则post得到的结果是null
 			$data = array(
 					'tname' => ($this->input->post('tname') == NULL)? 'null' :$this->input->post('tname'),
-					'firm' => ($this->input->post('firm') == NULL)? 'null' :$this->input->post('firm')
+					'firm'  => ($this->input->post('firm') == NULL)? 'null' :$this->input->post('firm')
 						);
 			if (!($this->type->search_type($data)))
 			{
