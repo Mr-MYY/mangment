@@ -118,6 +118,12 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->view('index/main_edit.html',$data);
 	}
 
+	public function editing()
+	{
+		$mid = $this->uri->segment(3);
+		$this->load->library('form_validation');
+		
+	}
 
 	
 	

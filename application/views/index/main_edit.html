@@ -21,7 +21,7 @@
 	</style>
 </head>
 <body>
-<form name="main_edit" method="post" action="">
+<form name="main_edit" method="post" action="<?php echo site_url('index_main/editing'.$m[0]['mid']) ?>">
 	<table class="table">
 		<tr>
 			<td class="th" colspan="12">编辑资产</td>
@@ -48,6 +48,25 @@
 			<td align="center">使用状态</td>
 			<td align="center">
 				<select name="zt" id="zt">
+					<option value="<?php echo $main[0]['tid'] ?>">
+						<?php  switch ($main[0]['tid'])
+						 {
+							case 0:
+								echo "使用中";
+								break;
+							case 1:
+								echo "库存";
+								break;
+							case 2:
+								echo "报废";
+								break;
+							case 3:
+								echo "作废";
+								break;
+						
+						}
+						?>
+					</option>
 					<option value="0">使用中</option>
             		<option value="1">库存</option>
             		<option value="2">报废</option>
@@ -63,6 +82,7 @@
 			<td align="center">安装地点</td>
 			<td align="center">
 				<select name="place" id="place">
+					<option value="<?php echo $main[0]['pid'] ?>"><?php echo $main[0]['pname'] ?></option>
 					<?php foreach($place as $p): ?>
 					<option value="<?php echo $p['pid'] ?>"><?php echo $p['pname']; ?></option>
 				<?php endforeach; ?>
