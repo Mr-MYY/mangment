@@ -68,6 +68,17 @@ class Main_model extends CI_Model
 		return $result;
 	}
 
+	/**
+	 * [edit_main 对设备主表进行更新]
+	 * @param  [type] $mid [数据库更新条件，这里的为根据mid=$mid进行更新]
+	 * @param  [type] $sqlcondition [数据库更新内容]
+	 * @return [type]               [description]
+	 */
+	public function edit_main($mid,$sqlcondition)
+	{
+		$this->db->where(array('mid'=>$mid));
+		$this->db->update('main',$sqlcondition);
+	}
 
 	
 	

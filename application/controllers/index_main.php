@@ -118,10 +118,45 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->view('index/main_edit.html',$data);
 	}
 
+	
+/**
+ * [editing 根据传入参数mid对设备主表进行修改，这里要进行表单验证]
+ * @return [type] [description]
+ */
 	public function editing()
 	{
 		$mid = $this->uri->segment(3);
-		$this->load->library('form_validation');
+		if (!($this->form_validation->run('main')))       //进行表单验证，具体内容可见config\form_validation
+		{
+			$this->click_type();
+		}
+		else
+		{
+			$sqlcondition = array(
+								'tid' => $this->input->post('type'),
+								'xhgg'=> $this->input->post('xhgg'),
+								'sn'  => $this->input->post('sn'),
+								'zcbh'=> $this->input->post('zcbh'),
+								'zt'  => $this->input->post('zt'),
+								'je'  => $this->input->post('je'),
+								'dhsj'=> $this->input->post('dhsj'),
+								'pid' => $this->input->post('pname'),
+								'azsj'=> $this->input->post('azsj'),
+								'fph' => $this->input->post('fph'),
+								'hth' => $this->input->post('hth'),
+								'bz'  => $this->input->post('bz'),
+								);	
+			//print_r($this->main->isnert_main($sqlcondition));die;
+			if ($this->main->edit_main($mid,$sqlcondition))
+			{
+				success('index_main/main','更新设备成功');
+			}
+			else
+			{
+				error('数据库操作异常');
+			}
+									
+		}
 		
 	}
 

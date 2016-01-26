@@ -21,7 +21,7 @@
 	</style>
 </head>
 <body>
-<form name="main_edit" method="post" action="<?php echo site_url('index_main/editing'.$m[0]['mid']) ?>">
+<form name="main_edit" method="post" action="<?php echo site_url('index_main/editing/'.$main[0]['mid']) ?>">
 	<table class="table">
 		<tr>
 			<td class="th" colspan="12">编辑资产</td>
@@ -30,7 +30,8 @@
 			<td width="20%" align="center">硬件类型</td>
 			<td align="center">
 				<select name="type" id="type">
-					<?php foreach($type as $t): ?>
+					<option value="<?php echo $main[0]['tid'] ?>"><?php echo $main[0]['firm']."--".$main[0]['tname'] ?></option>
+					<?php foreach($type as $t ): ?>
 					<option value="<?php echo $t['tid'] ?>"><?php echo $t['firm']."--".$t['tname']; ?></option>
 				<?php endforeach; ?>
 				</select>
@@ -48,8 +49,8 @@
 			<td align="center">使用状态</td>
 			<td align="center">
 				<select name="zt" id="zt">
-					<option value="<?php echo $main[0]['tid'] ?>">
-						<?php  switch ($main[0]['tid'])
+					<option value="<?php echo $main[0]['zt'] ?>">
+						<?php  switch ($main[0]['zt'])
 						 {
 							case 0:
 								echo "使用中";
