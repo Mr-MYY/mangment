@@ -77,7 +77,8 @@ class Main_model extends CI_Model
 	public function edit_main($mid,$sqlcondition)
 	{
 		$this->db->where(array('mid'=>$mid));
-		$this->db->update('main',$sqlcondition);
+		$result = $this->db->update('main',$sqlcondition);
+		return $result;
 	}
 
 	

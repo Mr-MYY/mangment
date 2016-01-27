@@ -28,7 +28,7 @@
 		</tr>
 		<tr>
 			<td width="20%" align="center">硬件类型</td>
-			<td align="center">
+			<td width="20%">
 				<select name="type" id="type">
 					<option value="<?php echo $main[0]['tid'] ?>"><?php echo $main[0]['firm']."--".$main[0]['tname'] ?></option>
 					<?php foreach($type as $t ): ?>
@@ -36,18 +36,24 @@
 				<?php endforeach; ?>
 				</select>
 			</td>
+		</tr>
+		<tr>
 			<td width="20%" align="center">型号规格</td>
-			<td align="center"><input type="text" name="xhgg" value="<?php echo $main[0]['xhgg'];?>"></td> 
+			<td><input type="text" name="xhgg" value="<?php echo $main[0]['xhgg'];?>">
+			<td><?php echo form_error('xhgg','<span color="red";>','</span>'); ?></td>
+			</td> 
 		</tr>
 		<tr>
 			<td align="center">S/N编号</td>
-			<td align="center"><input type="text" name="sn" value="<?php echo $main[0]['sn']; ?>"></td>
+			<td><input type="text" name="sn" value="<?php echo $main[0]['sn']; ?>"></td>
+		</tr>
+		<tr>
 			<td align="center">资产编号</td>
-			<td align="center"><input type="text" name="zcbh" value="<?php echo $main[0]['zcbh']; ?>"></td> 
+			<td><input type="text" name="zcbh" value="<?php echo $main[0]['zcbh']; ?>"></td> 
 		</tr>
 		<tr>
 			<td align="center">使用状态</td>
-			<td align="center">
+			<td>
 				<select name="zt" id="zt">
 					<option value="<?php echo $main[0]['zt'] ?>">
 						<?php  switch ($main[0]['zt'])
@@ -74,15 +80,23 @@
             		<option value="3">作废</option>
 				</select>
 			</td>
+			</tr>
+			<tr>
 			<td align="center">金额</td>
-			<td align="center"><input type="text" name="je" value="<?php echo $main[0]['je']; ?> "></td> 
+			<td><input type="text" name="je" value="<?php echo $main[0]['je']; ?>">
+			<td><?php echo form_error('je','<span color="red";>','</span>'); ?></td>
+			</td> 
 		</tr>
 		<tr>
 			<td align="center">到货时间</td>
-			<td align="center"><input type="text" name="dhsj" value="<?php echo $main[0]['dhsj'] ?>"></td>
+			<td><input type="text" name="dhsj" value="<?php echo $main[0]['dhsj']; ?>">
+			<td><?php echo form_error('dhsj','<span color="red";>','</span>'); ?>例：20160101</td>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">安装地点</td>
-			<td align="center">
-				<select name="place" id="place">
+			<td>
+				<select name="pname" id="pname">
 					<option value="<?php echo $main[0]['pid'] ?>"><?php echo $main[0]['pname'] ?></option>
 					<?php foreach($place as $p): ?>
 					<option value="<?php echo $p['pid'] ?>"><?php echo $p['pname']; ?></option>
@@ -92,18 +106,24 @@
 		</tr>
 		<tr>
 			<td align="center">安装时间</td>
-			<td align="center"><input type="text" name="azsj" value="<?php echo $main[0]['azsj'] ?> "></td>
+			<td><input type="text" name="azsj" value="<?php echo $main[0]['azsj']; ?>">
+			<td><?php echo form_error('azsj','<span color="red";>','</span>'); ?>例：20160101</td>
+			</td>
+		</tr>
+		<tr>
 			<td align="center">发票号</td>
-			<td align="center"><input type="text" name="fph" value="<?php echo $main[0]['fph']?>"></td> 
+			<td><input type="text" name="fph" value="<?php echo $main[0]['fph']?>"></td> 
 		</tr>
 		<tr>
 			<td align="center">合同号</td>
-			<td align="center"><input type="text" name="hth" value="<?php echo $main[0]['hth']; ?>"></td>
-			<td align="center">备注</td>
-			<td align="center"><input type="text" name="bz" value="<?php echo $main[0]['bz'] ?>"></td> 
+			<td><input type="text" name="hth" value="<?php echo $main[0]['hth']; ?>"></td>
 		</tr>
 		<tr>
-			<td colspan="4" align="center"><input type="submit" class="input_button" value="确认更改"></td>
+			<td align="center">备注</td>
+			<td><input type="text" name="bz" value="<?php echo $main[0]['bz'] ?>"></td> 
+		</tr>
+		<tr>
+			<td colspan="2" align="right"><input type="submit" class="input_button" value="确认更改"></td>
 		</tr>
 		
 	</table>
