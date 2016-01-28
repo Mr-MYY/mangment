@@ -42,9 +42,20 @@ $config = array(
 					'label' => '位置信息',
 					'rules' => 'required'
 				
+				)	
+			),
+			'dbsj' => array(
+				array(
+					'field'=>'dbsj',
+					'label'=>'调拨时间',
+					'rules'=>'required|exact_length[8]|numeric'
+					),
+				array(
+					'field'=>'newplace',
+					'label'=>'新地点',
+					'rules'=>'differs[oldpid]'
+					)
 				)
-			)
-				
 		
 	);
 				

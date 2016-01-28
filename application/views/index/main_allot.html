@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+<body>
+	<form name="allot" method="post" action="<?php echo site_url('index_main/allot/'.$main[0]['mid']);?>">
+
+		<table class="table">
+			<tr>
+				<td class="th" colspan="12">设备调拨单</td>
+			</tr>
+			<tr>
+				<td align="center" width="20%"><strong>硬件类型</strong></td>
+				<td width="20%"><?php echo $main[0]['firm']."--".$main[0]['tname'] ?></td>
+			</tr>
+			<tr>
+				<td align="center"><strong>型号规格</strong></td>
+				<td><?php echo $main[0]['xhgg']; ?></td>
+			</tr>
+			<tr>
+				<td align="center"><strong>S/N编号</strong></td>
+				<td><?php echo $main[0]['sn'] ?></td>
+			</tr>
+			<tr>
+				<td align="center"><strong>资产编号</strong></td>
+				<td><?php echo $main[0]['zcbh'] ?></td>
+			</tr>
+			<tr>
+				<td align="center"><strong>原地点</strong></td>
+				<td><?php echo $main[0]['pname'] ?></td>
+				<td><input type="text" name="oldpid" value="<?php echo $main[0]['pid'];?>"></td>
+			</tr>
+			<tr>
+				<td align="center"><strong>新地点</strong></td>
+				<td><select name="newplace" id="newplace">
+						<?php foreach($place as $p): ?>
+						<option value="<?php echo $p['pid'];?>"><?php echo $p['pname'] ?></option>
+						<?php endforeach; ?>
+					</select>
+				</td>
+				<td><?php echo form_error('newplace','<span style="coloe:red;">','</span>'); ?></td>
+			<tr>
+			<tr>
+				<td align="center"><strong>调拨时间</strong></td>
+				<td><input type="text" name="dbsj" value="<?php echo set_value('dbsj');?>"></td>
+				<td><?php echo form_error('dbsj','<span style="coloe:red;">','</span>'); ?>例：20160101</td>
+			</tr>
+				<td colspan="2" align="right"><input type="submit" value="确认调拨" class="input_button"></td>
+			</tr>
+			</tr>
+		</table>
+	</form>
+</body>

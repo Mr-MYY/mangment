@@ -162,6 +162,61 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		
 	}
 
+	/**
+	 * [click_place 在主界面点击地点后使用的方法，用于转到设备调拨界面]
+	 * @return [type] [转到设备调拨界面]
+	 */
+	public function click_place()
+	{
+		$mid= $this->uri->segment(3);
+		$sqlcondition = array('mid'=>$mid);
+		$data['main'] = $this->main->select_edit($sqlcondition);
+		$data['place']= $this->place->select_all_place();
+		$this->load->view('index/main_allot.html',$data);
+	}
+
+	/**
+	 * [allot 用于更新设备调拨表及设备主表中的记录]
+	 * @return [type] [description]
+	 */
+	public function allot()
+	{
+		if (!($this->form_validation->run('dbsj')))
+		{
+			$this->click_place();
+			if ( $this->input->post('oldpid') == $this->input->post('newplace'))
+			{
+				echo "相等";
+			}
+			else
+			{
+				echo  "不相等";
+			}
+		}
+		else
+		{
+			//echo "hello";die;
+			$mid = $this->uri->segment(3);
+			$sqlcondition =array('pid'=> $this->input->post('newplace')); 
+			$this->main->edit_main($mid,$sqlcondition); //第一步：更新主表中的地点名；			
+			$allotarray = array(
+								'mid'=>$mid,
+								'dbsj'=>$this->input->post('dbsj'),
+								'oldpid'=>$this->input->post('oldpid'),
+								'newpid'=>$this->input->post('newplace')
+								);
+			if ($this->main->insert_allot($allotarray))   //第二步：向调拨表中插入信息；
+			{
+				success('index_main/main','设备调拨成功');
+			}
+			else
+			{
+				error('数据库操作异常');
+			}
+
+		}
+		
+	}
 	
 	
 	

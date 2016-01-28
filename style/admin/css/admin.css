@@ -141,7 +141,7 @@
 
 /******************左侧****************/
 #left_box {
-	width:200px;
+	width:150px;
 	height: auto;
 	margin-top:33px;
 	border-radius:5px;
@@ -157,7 +157,7 @@
 	text-align:center;
 	font-size:15px;
 	font-family:'微软雅黑';
-	width:200px;
+	width:150px;
 	height:30px;
 	line-height:30px;
 	background:#005181;
@@ -172,7 +172,7 @@
 	+width: 100%;
 }
 #left_box div.menu_box h2 {
-	width:200px;
+	width:150px;
 	text-align:center;
 	font-size:14px;
 	font-family:'微软雅黑';

@@ -81,6 +81,16 @@ class Main_model extends CI_Model
 		return $result;
 	}
 
+	/**
+	 * [insert_allot 向调拨表中插入数据，用于记录设备调拨信息]
+	 * @return [type] [description]
+	 */
+	public function insert_allot($allotarray)
+	{
+		$result = $this->db->insert('allot',$allotarray);
+		return $result;
+	}
+
 	
 	
 	
