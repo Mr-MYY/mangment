@@ -10,6 +10,12 @@
 			window.UEDITOR_CONFIG.initialFrameWidth = 900;
 			window.UEDITOR_CONFIG.initialFrameHeight = 600;
 			UE.getEditor('content');
+			var btn = document.getElementById('showallot');
+			btn.onclick = function()
+			{
+				alert("a");
+				window.location.href = "<?php echo site_url('index_main/showallot/'.$main[0]['mid']);?>";
+			}
 		}
 	</script>
 	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
@@ -46,26 +52,32 @@
 			<tr>
 				<td align="center"><strong>原地点</strong></td>
 				<td><?php echo $main[0]['pname'] ?></td>
-				<td><input type="text" name="oldpid" value="<?php echo $main[0]['pid'];?>"></td>
+				<td><input type="hidden" name="oldpid" value="<?php echo $main[0]['pid'];?>"></td>
 			</tr>
 			<tr>
 				<td align="center"><strong>新地点</strong></td>
 				<td><select name="newplace" id="newplace">
 						<?php foreach($place as $p): ?>
-						<option value="<?php echo $p['pid'];?>"><?php echo $p['pname'] ?></option>
+						<option value="<?php echo $p['pid'];?>"><?php echo $p['pname']; ?></option>
 						<?php endforeach; ?>
 					</select>
 				</td>
 				<td><?php echo form_error('newplace','<span style="coloe:red;">','</span>'); ?></td>
-			<tr>
+			</tr>
 			<tr>
 				<td align="center"><strong>调拨时间</strong></td>
 				<td><input type="text" name="dbsj" value="<?php echo set_value('dbsj');?>"></td>
 				<td><?php echo form_error('dbsj','<span style="coloe:red;">','</span>'); ?>例：20160101</td>
 			</tr>
-				<td colspan="2" align="right"><input type="submit" value="确认调拨" class="input_button"></td>
-			</tr>
+			<tr>
+				<td align="center">
+				<input type="button" name="showallot" id="showallot" value="调拨查询" class="input_button">
+				</td>
+				<td align="right">
+				<input type="submit" value="确认调拨" class="input_button">
+				</td>
 			</tr>
 		</table>
 	</form>
 </body>
+</html>

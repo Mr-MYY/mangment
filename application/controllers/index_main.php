@@ -181,17 +181,11 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 	 */
 	public function allot()
 	{
-		if (!($this->form_validation->run('dbsj')))
+		$this->form_validation->set_rules('dbsj','调拨时间','required|exact_length[8]');
+		$this->form_validation->set_rules('newplace','新地点','callback_pid_check');
+		if (!($this->form_validation->run()))
 		{
 			$this->click_place();
-			if ( $this->input->post('oldpid') == $this->input->post('newplace'))
-			{
-				echo "相等";
-			}
-			else
-			{
-				echo  "不相等";
-			}
 		}
 		else
 		{
@@ -216,6 +210,31 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 
 		}
 		
+	}
+/**
+ * [pid_check 地点表单验证函数，用于验证设备调拨时新老地点不能相同，
+ * 用$this->form_validation->set_rules('newplace','新地点','callback_pid_check');调用此函数方法]
+ * @return [BOOL] [相同时返回假，不相同时返回真；]
+ */
+	public function pid_check()
+	{
+		$newpid = $this->input->post('newplace');
+		$oldpid = $this->input->post('oldpid');
+		if($newpid == $oldpid)
+		{
+			$this->form_validation->set_message('pid_check', '{field} 不能和原地点相同.');
+			return FALSE;
+		}
+		else
+		{
+			return TRUE;
+		}
+	} 
+
+	public function show_allot()
+	{
+		$mid = $this->uri->segment(3);
+		$this->load->view('index/main_showallot',$mid);
 	}
 	
 	
