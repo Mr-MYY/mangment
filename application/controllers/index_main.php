@@ -234,13 +234,10 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 	public function show_allot()
 	{
 		$mid = $this->uri->segment(3);
-		$this->load->view('index/main_showallot',$mid);
+		$data['main'] = $this->main->detailallot($mid);
+		// print_r($data);die;
+		$this->load->view('index/main_showallot.html',$data);
 	}
-	
-	
-	
-	
-	
 	
 	
 	

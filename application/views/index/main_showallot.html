@@ -19,6 +19,27 @@
 	<table class="table">
 			<tr>
 				<td class="th" colspan="12">调拨明细查询</td>
+			</tr>
+			<tr>
+				<td align="center">硬件类型</td>
+				<td align="center">型号规格</td>
+				<td align="center">S/N</td>
+				<td align="center">资产编号</td>
+				<td align="center">调拨时间</td>
+				<td align="center">原地点</td>
+				<td align="center">新地点</td>
 			</tr>	
+			<tr>
+				<?php foreach($main as $m): ?>
+					<td align="center"><?php echo $m['firm']."--".$m['tname']; ?></td>
+					<td align="center"><?php echo $m['xhgg']; ?></td>
+					<td align="center"><?php echo $m['sn']; ?></td>
+					<td align="center"><?php echo $m['zcbh']; ?></td>
+					<td align="center"><?php echo $m['dbsj']; ?></td>
+					<td align="center"><?php echo $m['oldpid']; ?></td>
+					<td align="center"><?php echo $m['newpid']; ?></td>
+				<?php endforeach;  ?>
+			</tr>
+	</table>
 </body>
 </html>

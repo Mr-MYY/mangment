@@ -90,6 +90,23 @@ class Main_model extends CI_Model
 		$result = $this->db->insert('allot',$allotarray);
 		return $result;
 	}
+/**
+ * [detailallot 根据设备mid获取设备调拨信息]
+ * @param  [type] $mid [字段mid]
+ * @return [array]      [返回值为一数组]
+ */
+	public function detailallot($mid)
+	{
+		$this->db->select('type.firm,type.tname,main.xhgg,main.sn,
+			main.zcbh,allot.dbsj,allot.oldpid,allot.newpid');
+		$this->db->join('type','main.tid = type.tid');
+		$this->db->join('allot','main.mid = allot.mid');
+		$this->db->where(array('main.mid'=>$mid));
+		$result = $this->db->get('allot')->result_array();
+		return $result;
+	}
+
+	
 
 	
 	
