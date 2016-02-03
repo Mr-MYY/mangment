@@ -17,29 +17,36 @@
 </head>
 <body>
 	<table class="table">
-			<tr>
-				<td class="th" colspan="12">调拨明细查询</td>
-			</tr>
-			<tr>
-				<td align="center">硬件类型</td>
-				<td align="center">型号规格</td>
-				<td align="center">S/N</td>
-				<td align="center">资产编号</td>
-				<td align="center">调拨时间</td>
-				<td align="center">原地点</td>
-				<td align="center">新地点</td>
-			</tr>	
-			<tr>
-				<?php foreach($main as $m): ?>
-					<td align="center"><?php echo $m['firm']."--".$m['tname']; ?></td>
-					<td align="center"><?php echo $m['xhgg']; ?></td>
-					<td align="center"><?php echo $m['sn']; ?></td>
-					<td align="center"><?php echo $m['zcbh']; ?></td>
-					<td align="center"><?php echo $m['dbsj']; ?></td>
-					<td align="center"><?php echo $m['oldpid']; ?></td>
-					<td align="center"><?php echo $m['newpid']; ?></td>
-				<?php endforeach;  ?>
-			</tr>
+		<tr>
+			<td class="th" colspan="12">调拨明细查询</td>
+		</tr>
+		<tr>
+			<td align="center">硬件类型</td>
+			<td align="center">型号规格</td>
+			<td align="center">S/N</td>
+			<td align="center">资产编号</td>
+			<td align="center">调拨时间</td>
+			<td align="center">原地点</td>
+			<td align="center">新地点</td>
+			<!-- <td align="center">操作</td> -->
+		</tr>	
+		<?php foreach($main as $m): ?>
+		<tr>
+			<td align="center"><?php echo $m['firm']."--".$m['tname']; ?></td>
+			<td align="center"><?php echo $m['xhgg']; ?></td>
+			<td align="center"><?php echo $m['sn']; ?></td>
+			<td align="center"><?php echo $m['zcbh']; ?></td>
+			<td align="center"><?php echo $m['dbsj']; ?></td>
+			<td align="center"><?php echo $m['oldplace']; ?></td>
+			<td align="center"><?php echo $m['newplace']; ?></td>
+			<!-- <td align="center"><a href="<?php  ?>">[删除]</a></td> -->
+		</tr>	
+		<?php endforeach;  ?>
+		<tr>
+			<td colspan="7" align="center"><input type="button" value="返回首页" class="input_button" onclick="window.location.href='<?php echo site_url('index_main/main');?>'"></td>
+		</tr>
+
+			
 	</table>
 </body>
 </html>

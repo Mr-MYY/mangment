@@ -4,6 +4,7 @@ class Type_model extends CI_Model  //类型模型，用于进行模型的相关�
 {
 	public function select_all_type()  //将所有类型选择出来；
 	{
+		$this->db->order_by('firm DESC','tname DESC');
 		$result = $this->db->get('type')->result_array();
 		return $result;
 	}
