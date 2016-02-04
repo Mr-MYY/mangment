@@ -108,6 +108,35 @@ class Main_model extends CI_Model
 		return $result;
 	}
 
+	/**
+	 * [show_repair 显示维修记录，在主界面点击状态后调用此方法显示设备的维修记录]
+	 * @param  [type] $mid [传入参数设备编号mid]
+	 * @return [array]      [description]
+	 */
+	public function show_repair($mid)
+	{
+		$this->db->select ('type.firm,type.tname,main.xhgg,main.sn,main.zcbh,place.pname,
+			repair.rid,repair.gzsm,repair.sxsj,repair.fhsj,repair.ghpj,repair.wxje,repair.bz');
+		$this->db->join('main','main.mid = repair.mid');
+		$this->db->join('type','main.tid = type.tid');
+		$this->db->join('place','place.pid = main.pid');
+		$this->db->where(array('repair.mid' => $mid));
+		$this->db->order_by('sxsj','DESC');
+		$result = $this->db->get('repair')->result_array();
+		return $result;
+
+	}
+
+	/**
+	 * [insert_repair 新增设备维修表方法，把数据直接插入维修表]
+	 * @param  [array] $sqlcondition [插入表中的条件数组]
+	 * @return [type]               [description]
+	 */
+	public function insert_repair($sqlcondition)
+	{
+		$result = $this->db->insert('repair',$sqlcondition);
+		return $result;
+	}
 	
 
 	

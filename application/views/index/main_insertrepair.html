@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+<body>
+	<form name="allot" method="post" action="<?php echo site_url('index_main/repair/'.$main[0]['mid']);?>">
+	<table class="table">
+		<tr>
+			<td class="th" colspan="12">新增维修记录</td>
+		</tr>
+		<tr>
+			<td align="center" width="20%">厂商</td>
+			<td width="40%"><?php echo $main[0]['firm'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">类型</td>
+			<td><?php echo $main[0]['tname'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">型号规格</td>
+			<td><?php echo $main[0]['xhgg'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">S/N</td>
+			<td><?php echo $main[0]['sn'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">资产编号</td>
+			<td><?php echo $main[0]['zcbh'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">所在科室</td>
+			<td><?php echo $main[0]['pname'];?></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">故障说明</td>
+			<td><input type="text" name="gzsm"></td>
+			<td><?php echo form_error('gzsm');?></td>
+		</tr>
+		<tr>
+			<td align="center">送修时间</td>
+			<td><input type="text" name="sxsj"></td>
+			<td><?php echo form_error('sxsj');?></td>
+		</tr>
+		<tr>
+			<td align="center">返回时间</td>
+			<td><input type="text" name="fhsj"></td>
+			<td><?php echo form_error('fhsj');?></td>
+		</tr>
+		<tr>
+			<td align="center">更换配件</td>
+			<td><input type="text" name="ghpj"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">维修金额</td>
+			<td><input type="text" name="wxje"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td align="center">备注</td>
+			<td><input type="text" name="bz"></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" value="确定新增" class="input_button"></td>
+		</tr>
+
+		
+	
+	</table>
+	</form>
+
+
+
+
+
+
+</body>
+</html>

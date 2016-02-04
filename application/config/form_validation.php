@@ -42,8 +42,25 @@ $config = array(
 					'label' => '位置信息',
 					'rules' => 'required'
 				
-				)	
-			)
+				)
+			),
+			'repair' => array(
+				array(
+					'field' => 'gzsm',
+					'label' => '故障说明',
+					'rules' => 'required'
+					),
+				array(
+					'field' => 'sxsj',
+					'label' => '送修时间',
+					'rules' => 'exact_length[8]|numeric|required'
+					),
+				array(
+					'field' => 'fhsj',
+					'label' => '返回时间',
+					'rules' => 'exact_length[8]|numeric'
+					),
+				)
 		
 	);
 $config['error_prefix'] = '<span style="color:red">';

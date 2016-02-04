@@ -229,13 +229,78 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 			return TRUE;
 		}
 	} 
-
+	/**
+	 * [show_allot 调拨查询按钮，用于点击【调拨查询】后将某一设备的所有调拨信息查询出来]
+	 * @return [type] [description]
+	 */
 	public function show_allot()
 	{
 		$mid = $this->uri->segment(3);
 		$data['main'] = $this->main->detailallot($mid);
 		// print_r($data);die;
 		$this->load->view('index/main_showallot.html',$data);
+	}
+
+	/**
+	 * [click_zt 在主界面点击状态后显示的方法，用于显示该设备维修记录]
+	 * @return [type] [description]
+	 */
+	public function click_zt()
+	{
+		$mid = $this->uri->segment(3);
+		$data['repair'] = $this->main->show_repair($mid);
+		$data['main'] = $mid;
+		// print_r($data);die;
+		$this->load->view('index/main_repair.html',$data);
+
+	}
+
+	/**
+	 * [insert_repair 加载新增维修单界面]
+	 * @return [type] [description]
+	 */
+	public function insert_repair()
+	{
+		$mid = $this->uri->segment(3);
+		$sqlcondition = array('mid'=>$mid);
+		$data['main'] = $this->main->select_edit($sqlcondition);
+
+		$this->load->view('index/main_insertrepair.html',$data);
+
+	}
+
+	/**
+	 * [repair 设备维修新增方法，用于新增设备维修记录的表单验证及数据库操作]
+	 * @return [type] [description]
+	 */
+	public function repair()
+	{
+		$mid = $this->uri->segment(3);
+		if (!($this->form_validation->run('repair')))       //进行表单验证，具体内容可见config\form_validation
+		{
+			$this->insert_repair();
+		}
+		else
+		{	
+
+			$repairarray = array(
+							'mid' => $mid,
+							'gzsm' => $this->input->post('gzsm'),
+							'sxsj' => $this->input->post('sxsj'),
+							'fhsj' => $this->input->post('fhsj'),
+							'ghpj' => $this->input->post('ghpj'),
+							'wxje' => $this->input->post('wxje'),
+							'bz' => $this->input->post('bz')
+							 );
+			if ($this->main->insert_repair($repairarray))
+			{
+				success('index_main/click_zt/'.$mid,'新增设备维修成功');
+			}
+			else
+			{
+				error('数据库操作异常');
+			}
+		}
 	}
 	
 	

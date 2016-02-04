@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+	<script type="text/javascript">
+		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
+		window.onload = function(){
+			window.UEDITOR_CONFIG.initialFrameWidth = 900;
+			window.UEDITOR_CONFIG.initialFrameHeight = 600;
+			UE.getEditor('content');
+		}
+	</script>
+	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			color: #f00;
+		}
+	</style>
+</head>
+<body>
+	<table class="table">
+		<tr>
+			<td class="th" colspan="13">设备维修记录</td>
+		</tr>
+		<tr>
+			<td align="center">厂商</td>
+			<td align="center">类型</td>
+			<td align="center">型号规格</td>
+			<td align="center">S/N</td>
+			<td align="center">资产编号</td>
+			<td align="center">所在科室</td>
+			<td align="center">故障说明</td>
+			<td align="center">送修时间</td>
+			<td align="center">返回时间</td>
+			<td align="center">更换配件</td>
+			<td align="center">维修金额</td>
+			<td align="center">备注</td>
+			<td align="center">操作</td>
+		</tr>
+		<?php foreach ($repair as $r): ?>
+			<tr>
+				<td><?php echo $r['firm'];?></td>
+				<td><?php echo $r['tname'] ?></td>
+				<td><?php echo $r['xhgg'] ?></td>
+				<td><?php echo $r['sn'] ?></td>
+				<td><?php echo $r['zcbh'] ?></td>
+				<td><?php echo $r['pname'] ?></td>
+				<td><?php echo $r['gzsm'] ?></td>
+				<td><?php echo $r['sxsj'] ?></td>
+				<td><?php echo $r['fhsj'] ?></td>
+				<td><?php echo $r['ghpj'] ?></td>
+				<td><?php echo $r['wxje'] ?></td>
+				<td><?php echo $r['bz'] ?></td>
+				<td><a href="">[编辑] [删除]</a></td>
+			</tr>
+		<?php endforeach; ?>
+		<tr>
+			<td ><input type="button" value="新增维修" class="input_button" onclick="window.location.href='<?php echo site_url('index_main/insert_repair/'.$main);?>'"></td>
+		</tr>
+
+
+
+
+
+	
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
