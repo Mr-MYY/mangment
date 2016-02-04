@@ -10,7 +10,7 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->model('place_model','place');   //默认载入类型数据模型
 		$this->load->helper('form');               //默认载入表单辅助函数
 		$this->load->library('form_validation');   //默认载入表单验证类
-		// $this->output->enable_profiler(TRUE);        //开启调试模式
+		$this->output->enable_profiler(TRUE);        //开启调试模式
 	}
 	
 	public function index()
@@ -282,17 +282,17 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		}
 		else
 		{	
-
-			$repairarray = array(
+			$repairarray = array(                                  //第一步：向维修表中插入数据
 							'mid' => $mid,
 							'gzsm' => $this->input->post('gzsm'),
 							'sxsj' => $this->input->post('sxsj'),
 							'fhsj' => $this->input->post('fhsj'),
 							'ghpj' => $this->input->post('ghpj'),
 							'wxje' => $this->input->post('wxje'),
-							'bz' => $this->input->post('bz')
+							'bz' => $this->input->post('bz'),
+							'rzt' => 4
 							 );
-			if ($this->main->insert_repair($repairarray))
+			if ($this->main->insert_repair($repairarray) && $this->main->zt_torepair($mid))       //第二步：将主表中对应设备的状态改为维修中
 			{
 				success('index_main/click_zt/'.$mid,'新增设备维修成功');
 			}
@@ -300,6 +300,47 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 			{
 				error('数据库操作异常');
 			}
+		}
+	}
+
+	/**
+	 * [edit_repair 用于跳转至维修单编辑界面，跳转时将相应主表信息及维修单信息传至界面]
+	 * @return [type] [description]
+	 */
+	public function edit_repair()
+	{
+		$rid = $this->uri->segment(3);
+		$data['repair'] = $this->main->select_repair($rid);   //获取需要修改的维修记录表
+		//通过此维修记录表中的mid关联到设备主表的信息
+		$mid = $data['repair'][0]['mid'];
+
+		$sqlcondition = array('mid'=>$mid);
+		$data['main'] = $this->main->select_edit($sqlcondition);
+		$this->load->view('index/main_editrepair.html',$data);
+	}
+
+	
+	public function repairediting()
+	{
+		$rid = $this->uri->segment(3);
+		if (!($this->form_validation->run('repair')))       //进行表单验证，具体内容可见config\form_validation
+		{
+			$this->edit_repair();
+		}
+		else
+		{
+			$repairarray = array(                                  //第一步：编辑维修表中数据
+							'gzsm' => $this->input->post('gzsm'),
+							'sxsj' => $this->input->post('sxsj'),
+							'fhsj' => $this->input->post('fhsj'),
+							'ghpj' => $this->input->post('ghpj'),
+							'wxje' => $this->input->post('wxje'),
+							'bz' => $this->input->post('bz'),
+							 );
+			$this->main->edit_repair($rid,$repairarray);
+			echo "ok";//编辑成功后，判断主表中此mid有无还在维修中的维修单，若无，则将主表中的状态一起改为0
+		
+
 		}
 	}
 	

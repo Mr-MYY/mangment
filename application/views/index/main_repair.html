@@ -32,6 +32,7 @@
 			<td align="center">S/N</td>
 			<td align="center">资产编号</td>
 			<td align="center">所在科室</td>
+			<td align="center">维修状态</td>
 			<td align="center">故障说明</td>
 			<td align="center">送修时间</td>
 			<td align="center">返回时间</td>
@@ -48,13 +49,23 @@
 				<td><?php echo $r['sn'] ?></td>
 				<td><?php echo $r['zcbh'] ?></td>
 				<td><?php echo $r['pname'] ?></td>
+				<td><?php switch ($r['rzt']) 
+							{
+								case 0:
+									echo "完成维修";
+									break;
+								case 4:
+									echo "维修中";
+									break;
+							} ?>
+				</td>
 				<td><?php echo $r['gzsm'] ?></td>
 				<td><?php echo $r['sxsj'] ?></td>
 				<td><?php echo $r['fhsj'] ?></td>
 				<td><?php echo $r['ghpj'] ?></td>
 				<td><?php echo $r['wxje'] ?></td>
 				<td><?php echo $r['bz'] ?></td>
-				<td><a href="">[编辑] [删除]</a></td>
+				<td><a href="<?php echo site_url('index_main/edit_repair/'.$r['rid'])?>">[编辑]</a></td>
 			</tr>
 		<?php endforeach; ?>
 		<tr>

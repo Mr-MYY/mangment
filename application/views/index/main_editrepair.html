@@ -21,10 +21,10 @@
 	</style>
 </head>
 <body>
-	<form name="insertrepair" method="post" action="<?php echo site_url('index_main/repair/'.$main[0]['mid']);?>">
+	<form name="editrepair" method="post" action="<?php echo site_url('index_main/repairediting/'.$repair[0]['rid']);?>">
 	<table class="table">
 		<tr>
-			<td class="th" colspan="12">新增维修记录</td>
+			<td class="th" colspan="12">编辑维修记录</td>
 		</tr>
 		<tr>
 			<td align="center" width="20%">厂商</td>
@@ -58,36 +58,36 @@
 		</tr>
 		<tr>
 			<td align="center">故障说明</td>
-			<td><input type="text" name="gzsm" value="<?php echo set_value('gzsm') ?>"></td>
+			<td><input type="text" name="gzsm" value="<?php echo $repair[0]['gzsm'] ?>"></td>
 			<td><?php echo form_error('gzsm');?></td>
 		</tr>
 		<tr>
 			<td align="center">送修时间</td>
-			<td><input type="text" name="sxsj" value="<?php echo set_value('sxsj') ?>"></td>
+			<td><input type="text" name="sxsj" value="<?php echo $repair[0]['sxsj'] ?>"></td>
 			<td><?php echo form_error('sxsj');?>例：20160101</td>
 		</tr>
 		<tr>
 			<td align="center">返回时间</td>
-			<td><input type="text" name="fhsj" value="<?php echo set_value('fhsj') ?>"></td>
+			<td><input type="text" name="fhsj" value="<?php echo $repair[0]['fhsj'] ?>"></td>
 			<td><?php echo form_error('fhsj');?>例：20160101</td>
 		</tr>
 		<tr>
 			<td align="center">更换配件</td>
-			<td><input type="text" name="ghpj" value="<?php echo set_value('ghpj') ?>"></td>
+			<td><input type="text" name="ghpj" value="<?php echo $repair[0]['ghpj'] ?>"></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td align="center">维修金额</td>
-			<td><input type="text" name="wxje" value="<?php echo set_value('wxje') ?>"></td>
+			<td><input type="text" name="wxje" value="<?php echo $repair[0]['wxje'] ?>"></td>
 			<td></td>
 		</tr>
 		<tr>
 			<td align="center">备注</td>
-			<td><input type="text" name="bz" value="<?php echo set_value('bz') ?>"></td>
+			<td><input type="text" name="bz" value="<?php echo $repair[0]['bz'] ?>"></td>
 			<td></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" value="确定新增" class="input_button"></td>
+			<td colspan="2" align="center"><input type="submit" value="修改" class="input_button"></td>
 		</tr>
 
 		

@@ -116,7 +116,7 @@ class Main_model extends CI_Model
 	public function show_repair($mid)
 	{
 		$this->db->select ('type.firm,type.tname,main.xhgg,main.sn,main.zcbh,place.pname,
-			repair.rid,repair.gzsm,repair.sxsj,repair.fhsj,repair.ghpj,repair.wxje,repair.bz');
+			repair.rid,repair.rzt,repair.gzsm,repair.sxsj,repair.fhsj,repair.ghpj,repair.wxje,repair.bz');
 		$this->db->join('main','main.mid = repair.mid');
 		$this->db->join('type','main.tid = type.tid');
 		$this->db->join('place','place.pid = main.pid');
@@ -135,6 +135,36 @@ class Main_model extends CI_Model
 	public function insert_repair($sqlcondition)
 	{
 		$result = $this->db->insert('repair',$sqlcondition);
+		return $result;
+	}
+
+	public function edit_repair($rid,$sqlcondition)
+	{
+		$this->db->where(array('rid'=>$rid));
+		$result = $this->db->update('repair',$sqlcondition);
+		return $result;
+	}
+
+	/**
+	 * [zt_torepair 根据mid将设备主表中的对应状态改为4：即维修中]
+	 * @param  [type] $mid [description]
+	 * @return [type]      [description]
+	 */
+	public function zt_torepair($mid)
+	{
+		$this->db->where(array('mid'=>$mid));
+		$result = $this->db->update('main',array('zt'=>4));
+		return $result;
+	}
+
+	/**
+	 * [select_repair 根据rid选出所需要的维修记录，用于对单条维修记录进行修改]
+	 * @param  [type] $rid [description]
+	 * @return [type]      [description]
+	 */
+	public function select_repair($rid)
+	{
+		$result = $this->db->get_where('repair',array('rid'=>$rid))->result_array();
 		return $result;
 	}
 	
