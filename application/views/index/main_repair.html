@@ -65,7 +65,21 @@
 				<td><?php echo $r['ghpj'] ?></td>
 				<td><?php echo $r['wxje'] ?></td>
 				<td><?php echo $r['bz'] ?></td>
-				<td><a href="<?php echo site_url('index_main/edit_repair/'.$r['rid'])?>">[编辑]</a></td>
+				<td>
+					<a href="<?php echo site_url('index_main/edit_repair/'.$r['rid'])?>">[编辑]</a>
+					<a href="<?php echo site_url('index_main/finish_repair/'.$r['rid'])?>">
+						<?php 
+							switch ($r['rzt']) {
+								case 0:
+									echo "[维修]";
+									break;
+								case 4:
+									echo "[完成]";
+									break;
+							}
+						?>
+					</a>
+				</td>
 			</tr>
 		<?php endforeach; ?>
 		<tr>

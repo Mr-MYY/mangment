@@ -158,6 +158,18 @@ class Main_model extends CI_Model
 	}
 
 	/**
+	 * [zt_touse 根据mid将设备主表中的对应状态改为0：即使用中]
+	 * @param  [type] $mid [description]
+	 * @return [type]      [description]
+	 */
+	public function zt_touse($mid)
+	{
+		$this->db->where(array('mid'=>$mid));
+		$result = $this->db->update('main',array('zt'=>0));
+		return $result;
+	}
+
+	/**
 	 * [select_repair 根据rid选出所需要的维修记录，用于对单条维修记录进行修改]
 	 * @param  [type] $rid [description]
 	 * @return [type]      [description]
@@ -166,6 +178,48 @@ class Main_model extends CI_Model
 	{
 		$result = $this->db->get_where('repair',array('rid'=>$rid))->result_array();
 		return $result;
+	}
+
+	/**
+	 * [check_repair 根据mid检查维修单中是否有在维修的单据，在修改维修单时，通过检查此项，
+	 * 判断是否需要更改主设备表中的zt值]
+	 * @param  [type] $mid [description]
+	 * @return [type]      [description]
+	 */
+	public function check_repair($mid)
+	{
+		$this->db->where(array(
+							'mid' => $mid,
+							'rzt' => 4
+							)
+						);
+		$this->db->from('repair');
+		$result = $this->db->count_all_results();
+		return $result;
+	}
+
+	/**
+	 * [chang_zt 改变维修单的状态，用于维修单界面点击[完成]按钮后进行的数据库操作]
+	 * @param  [type] $rid [description]
+	 * @return [type]      [description]
+	 */
+	public function chang_rzt($rid)
+	{
+		$data['repair'] = $this->main->select_repair($rid);
+		$rzt = $data['repair'][0]['rzt'];
+		switch ($rzt) {             //对维修单的维修状态作判断，进行相应的操作
+			case 0:					//0:表示维修单状态为已完成，需将状态切换至4
+				$this->db->where(array('rid'=>$rid));
+				$result = $this->db->update('repair',array('rzt'=>4));
+				return $result;
+				break;
+			
+			case 4:					//4:表示维修单状态为维修中，需将状态切换至0
+				$this->db->where(array('rid'=>$rid));
+				$result = $this->db->update('repair',array('rzt'=>0));
+				return $result;
+				break;
+		}
 	}
 	
 

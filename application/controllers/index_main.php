@@ -319,10 +319,15 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->view('index/main_editrepair.html',$data);
 	}
 
-	
+	/**
+	 * [repairediting 维修单编辑方法，用于对维修单的数据库修改操作]
+	 * @return [type] [description]
+	 */
 	public function repairediting()
 	{
 		$rid = $this->uri->segment(3);
+		$data['repair'] = $this->main->select_repair($rid);
+		$mid = $data['repair'][0]['mid'];
 		if (!($this->form_validation->run('repair')))       //进行表单验证，具体内容可见config\form_validation
 		{
 			$this->edit_repair();
@@ -337,10 +342,50 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 							'wxje' => $this->input->post('wxje'),
 							'bz' => $this->input->post('bz'),
 							 );
-			$this->main->edit_repair($rid,$repairarray);
-			echo "ok";//编辑成功后，判断主表中此mid有无还在维修中的维修单，若无，则将主表中的状态一起改为0
-		
+			if ($this->main->edit_repair($rid,$repairarray))
+			{
+				success('index_main/click_zt/'.$mid,'修改设备维修单成功');
+			}
+			else
+			{
+				error('数据库操作异常');
+			}
 
+		}
+	}
+
+/**
+ * [finish_repair 维修单中点击[完成]链接进行的操作，这里首先判断维修单的维修状态，根据维修状态
+ * 切换相应的单据状态，同时编辑成功后，判断主表中此mid有无还在维修中的维修单，若无，则将主表中的状态一起改为0]
+ * @return [type] [description]
+ */
+	public function finish_repair()
+	{
+		$rid = $this->uri->segment(3);
+		$data['r'] = $this->main->select_repair($rid);
+		$mid = $data['r'][0]['mid'];
+		$rzt = $data['r'][0]['rzt'];
+
+		switch ($rzt) {             //对维修单的维修状态作判断，进行相应的操作
+			case 0:					//0:表示维修单状态为已完成，需将状态切换至4
+				$this->main->chang_rzt($rid);
+				$this->main->zt_torepair($mid);   //同时改变主表的状态为维修中
+				$data['repair'] = $this->main->show_repair($mid);
+				$data['main'] = $mid;
+				// print_r($data);die;
+				$this->load->view('index/main_repair.html',$data);
+				break;
+			
+			case 4:					//4:表示维修单状态为维修中，需将状态切换至0
+				$this->main->chang_rzt($rid);
+				if (!($this->main->check_repair($mid)))   //判断是否还有在维修的单据，若没有，将主表状态切换成使用中
+				{
+					$this->main->zt_touse($mid);
+				}
+				$data['repair'] = $this->main->show_repair($mid);
+				$data['main'] = $mid;
+				$this->load->view('index/main_repair.html',$data);
+				break;
 		}
 	}
 	
