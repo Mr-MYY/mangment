@@ -388,6 +388,51 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 				break;
 		}
 	}
+
+	/**
+	 * [del_repair 删除维修单方法，用于点击【删除】按钮后跳转至删除页面]
+	 * @return [type] [description]
+	 */
+	public function del_repair()
+	{
+		$rid = $this->uri->segment(3);
+		$data['repair'] = $this->main->select_repair($rid);   //获取需要修改的维修记录表
+		//通过此维修记录表中的mid关联到设备主表的信息
+		$mid = $data['repair'][0]['mid'];
+
+		$sqlcondition = array('mid'=>$mid);
+		$data['main'] = $this->main->select_edit($sqlcondition);
+		$this->load->view('index/main_delrepair.html',$data);
+
+	}
+
+	/**
+	 * [repairdeling 删除维修单方法，用于删除维修单时进行数据库操作]
+	 * @return [type] [description]
+	 */
+	public function repairdeling()
+	{
+		$rid = $this->uri->segment(3);
+		$data['r'] = $this->main->select_repair($rid);
+		$rzt = $data['r'][0]['rzt'];
+		$mid = $data['r'][0]['mid'];
+		if ($rzt == 4)     //判断改维修单状态是否为维修中，删除后，需根据维修单状态改变主表状态
+		{
+			$this->main->chang_rzt($rid);
+				if (!($this->main->check_repair($mid)))   //判断是否还有在维修的单据，若没有，将主表状态切换成使用中
+				{
+					$this->main->zt_touse($mid);
+				}
+		}
+		if ($this->main->delete_repair($rid))
+			{
+				success('index_main/click_zt/'.$mid,'删除设备维修单成功');
+			}
+			else
+			{
+				error('数据库操作异常');
+			}
+	}
 	
 	
 	

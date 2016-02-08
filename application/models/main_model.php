@@ -221,6 +221,16 @@ class Main_model extends CI_Model
 				break;
 		}
 	}
+
+	/**
+	 * [delete_repair 根据rid删除对应维修单]
+	 * @return [type] [description]
+	 */
+	public function delete_repair($rid)
+	{
+		$result = $this->db->delete('repair',array('rid'=>$rid));
+		return $result;
+	}
 	
 
 	
