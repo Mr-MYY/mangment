@@ -10,7 +10,7 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$this->load->model('place_model','place');   //默认载入类型数据模型
 		$this->load->helper('form');               //默认载入表单辅助函数
 		$this->load->library('form_validation');   //默认载入表单验证类
-		$this->output->enable_profiler(TRUE);        //开启调试模式
+		// $this->output->enable_profiler(TRUE);        //开启调试模式
 	}
 	
 	public function index()
