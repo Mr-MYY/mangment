@@ -27,9 +27,8 @@ class Main_model extends CI_Model
 	 */
 	public function select_distinct_type()
 	{
-		$this->db->join('main','main.tid = type.tid');
-		$this->db->order_by('tname','ASC');
-		$this->db->order_by('firm','ASC');
+		$this->db->distinct();
+		$this->db->where('tid in (select tid from t_main)');
 		$result = $this->db->get('type')->result_array();
 		return $result;
 	}

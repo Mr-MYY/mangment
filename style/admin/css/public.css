@@ -71,6 +71,21 @@ a.showMinus{
 .tdLtitle6{width: 122px;}
 .tdLtitle7{width: 170px;}
 .center{text-align:center;}
+.tablesorter{width:100%;margin-top: 3px;}
+.tablesorter,.tablesorter td{border:solid 1px #ccc;}
+.tablesorter th{border:solid 1px #ccc;width:100px;text-align: center;}
+.tablesorter thead tr td{background: #eee;color:#333;}
+/************表格样式2********/
+.tableTop{font-weight: 700;text-align: left;}
+.tdLittle0{width: 30px;}
+.tdLittle1{width: 20px;}
+.tdLittle2{width: 60px;}
+.tdLtitle3{width: 65px;}
+.tdLtitle4{width: 108px;}
+.tdLtitle5{width: 94px;}
+.tdLtitle6{width: 122px;}
+.tdLtitle7{width: 170px;}
+.center{text-align:center;}
 .table{width:100%;margin-top: 3px;}
 .table,.table td{border:solid 1px #ccc;}
 .table th{border:solid 1px #ccc;width:100px;text-align: center;}

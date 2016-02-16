@@ -4,7 +4,7 @@ class place_model extends CI_Model  //类型模型，用于进行模型的相关
 {
 	public function select_all_place()  //将所有地点选择出来；
 	{
-		$this->db->order_by('pname','DESC');
+		$this->db->order_by('pname','ASC');
 		$result = $this->db->get('place')->result_array();
 		return $result;
 	}

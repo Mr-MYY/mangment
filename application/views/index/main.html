@@ -4,12 +4,19 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() . 'style/admin/css/public.css' ?>">
 	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.all.min.js"></script>
+  
 	<script type="text/javascript">
 		window.UEDITOR_HOME_URL = "<?php echo base_url() ?>org/ueditor/";
 		window.onload = function(){
 			window.UEDITOR_CONFIG.initialFrameWidth = 900;
 			window.UEDITOR_CONFIG.initialFrameHeight = 600;
 			UE.getEditor('content');
+    $(document).ready(function() 
+    { 
+        $("#myTable").tablesorter(); 
+    } 
+    ); 
+      
 		}
 	</script>
 	<script type="text/javascript" src="<?php echo base_url() ?>org/ueditor/ueditor.config.js"></script>
@@ -23,25 +30,29 @@
 
 <body>
 <form name="main" method="post" action="<?php echo site_url('index_main/check');?>">
-<table class="table">
+  <table>
 	<tr>
 	  <td class="th" colspan="12">资产总览:点击[类型]进入编辑界面；点击[状态]进入维修界面；点击[安装地点]进入调拨界面；</td>
 	</tr>
+  </table>
+  <table id="myTable" class="tablesorter">
+  <thead>
 	<tr>
-       <td align="center"><strong>硬件类型</strong></td>
-       <td align="center"><strong>型号规格</strong></td>
-       <td align="center"><strong>S/N编号</strong></td>
-       <td align="center"><strong>资产编号</strong></td>
-       <td align="center"><strong>使用状态</strong></td>
-       <td align="center"><strong>金额</strong></td>
-       <td align="center"><strong>到货时间</strong></td>
-       <td align="center"><strong>安装地点</strong></td>
-       <td align="center"><strong>安装日期</strong></td>
-       <td align="center"><strong>发票号</strong></td>
-       <td align="center"><strong>合同号</strong></td>
-       <td align="center"><strong>备注</strong></td>
-       <td align="center"><strong>操作</strong></td>
+       <th align="center"><strong>硬件类型</strong></th>
+       <th align="center"><strong>型号规格</strong></th>
+       <th align="center"><strong>S/N编号</strong></th>
+       <th align="center"><strong>资产编号</strong></th>
+       <th align="center"><strong>使用状态</strong></th>
+       <th align="center"><strong>金额</strong></th>
+       <th align="center"><strong>到货时间</strong></th>
+       <th align="center"><strong>安装地点</strong></th>
+       <th align="center"><strong>安装日期</strong></th>
+       <th align="center"><strong>发票号</strong></th>
+       <th align="center"><strong>合同号</strong></th>
+       <th align="center"><strong>备注</strong></th>
+       <th align="center"><strong>操作</strong></th>
 	</tr>
+  </thead>
     <tr>
     	<td align="center"><label for="select"></label>
     	  <select name="type" id="type">
@@ -70,9 +81,9 @@
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"></td>
-        <td align="center"><input type="submit" class="input_button" value="查询"/></td>
-        
+        <td align="center"><input type="submit" class="input_button" value="查询"/></td>  
     </tr>
+     <tbody>  
     <?php foreach($main as $m):?>
     <tr>
     <td align="center">
@@ -118,7 +129,7 @@
     <td align="center"><?php echo $m['bz']; ?></td>
     </tr>
     <?php endforeach;?>
-
+</tbody>
 </table>
 
 </form>
