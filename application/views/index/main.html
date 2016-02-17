@@ -11,6 +11,8 @@
 			window.UEDITOR_CONFIG.initialFrameWidth = 900;
 			window.UEDITOR_CONFIG.initialFrameHeight = 600;
 			UE.getEditor('content');
+      // var otb = ducument.getElememtById('myTable');
+      // var otr = otb.getElementsByTagName('td');
     $(document).ready(function() 
     { 
         $("#myTable").tablesorter(); 
@@ -54,25 +56,18 @@
 	</tr>
   </thead>
     <tr>
-    	<td align="center"><label for="select"></label>
-    	  <select name="type" id="type">
-            <?php foreach($type as $t):?>
-            <option value="<?php echo $t['tid'];?>"><?php echo $t['firm']."--".$t['tname'];?></option>
-            <?php endforeach ?>
-  	    </select></td>
+    	<td align="center">
+    	  <input type="text" name="type" id="type">
+      </td>
         <td align="center"><label for="xhgg"></label>
         <input type="text" name="xhgg" id="xhgg"></td>
         <td align="center"><label for="sn"></label>
         <input type="text" name="sn" id="sn"></td>
         <td align="center"><label for="zcbh"></label>
         <input type="text" name="zcbh" id="zcbh"></td>
-        <td align="center"><label for="zt"></label>
-        <select name="zt" id="zt">
-            <option value="0">使用中</option>
-            <option value="1">库存</option>
-            <option value="2">报废</option>
-            <option value="4">维修中</option>
-        </select></td>
+        <td align="center">
+          <input type="text" name="zt" id="zt">
+        </td>
         <td align="center"></td>
         <td align="center"></td>
         <td align="center"><label for="pid"></label>
