@@ -231,6 +231,32 @@ class Main_model extends CI_Model
 		return $result;
 	}
 	
+	/**
+	 * [showAllot 用于查询调拨表中所有未审核的单据]
+	 * @return [type] [description]
+	 */
+	public function showUnshAllot()
+	{
+		$this->db->select('type.tname,type.firm,main.xhgg,main.sn,main.zcbh,allot.*');
+		$this->db->select ('(select pname from t_place where pid = t_allot.oldpid) as oldpname');
+		$this->db->select ('(select pname from t_place where pid = t_allot.newpid) as newpname');
+		$this->db->join('main','main.mid = allot.mid');
+		$this->db->join('type','type.tid = main.tid');
+		$this->db->order_by('allot.mid');
+		$result = $this->db->get_where('allot',array('sh' => 0))->result_array();
+		return $result;
+	}
+
+	/**
+	 * [setAllotSh 用于根据传入参数aid改变sh=1]
+	 * @param [type] $aid [description]
+	 */
+	public function setAllotSh($aid)
+	{
+		$this->db->where(array('aid'=>$aid));
+		$result = $this->db->update('allot',array('sh'=>1));
+		return $result;
+	}
 
 	
 	

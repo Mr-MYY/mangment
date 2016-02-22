@@ -1,19 +1,43 @@
-$(function(){
-	//登录框自动显示(弹性效果)
-	// $('form').animate({top : '190px'},500);
-	// $('form').animate({top : '150px'},200);
-	
-	//后台登陆由下到上
-	allP = $('.four_bj').find('p');
-	allP.eq(0).animate({left : 0,top : 0},500);
-	allP.eq(1).animate({left : 235,top : 0},600);
-	allP.eq(2).animate({left : 0,top : 122},700);
-	allP.eq(3).animate({left : 235,top : 122},800);
-	//验证码自动显示
-	$('form img').fadeIn(900);
-	//网页加载自动获得焦点
-	$('#userName').focus();
-	
-})
-
+$(function()
+{
+    // check placeholder browser support
+    if (!Modernizr.input.placeholder)
+    {
+         // set placeholder values
+        $(this).find('[placeholder]').each(function()
+        {
+            if ($(this).val() == '') // if field is empty
+            {
+                $(this).val( $(this).attr('placeholder') );
+            }
+        });
+         // focus and blur of placeholders
+        $('[placeholder]').focus(function()
+        {
+            if ($(this).val() == $(this).attr('placeholder'))
+            {
+                $(this).val('');
+                $(this).removeClass('placeholder');
+            }
+        }).blur(function()
+        {
+            if ($(this).val() == '' || $(this).val() == $(this).attr('placeholder'))
+            {
+                $(this).val($(this).attr('placeholder'));
+                $(this).addClass('placeholder');
+            }
+        });
+         // remove placeholders on submit
+        $('[placeholder]').closest('form').submit(function()
+        {
+            $(this).find('[placeholder]').each(function()
+            {
+                if ($(this).val() == $(this).attr('placeholder'))
+                {
+                    $(this).val('');
+                }
+            })
+        });
+     }
+});
 

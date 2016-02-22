@@ -83,17 +83,17 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 		$zt = $this->input->post('zt');
 
 		$sqlcondition = array(
-							'main.tid' => $type,
+							'type.tname' => $type,
 							'xhgg'=> $xhgg,
 							'sn'  => $sn,
 							'zcbh'=> $zcbh,
-							'main.pid' => $pid,
+							'place.pname' => $pid,
 							'zt'  => $zt
 								);
 		if ($this->main->check_main($sqlcondition))
 		{
 			$data['main'] = $this->main->check_main($sqlcondition);
-			$data['type'] = $this->main->select_distinct_type();
+			// $data['type'] = $this->main->select_distinct_type();
 			$this->load->view('index/main.html',$data);
 		}
 		else
@@ -433,7 +433,27 @@ class Index_main extends CI_Controller //前台主界面控制器，控制所有
 				error('数据库操作异常');
 			}
 	}
+
+	/**
+	 * [show_allot 用于显示所有未审核，即审核标志为0的]
+	 * @return [type] [description]
+	 */
+	public function show_unshallot()
+	{
+		$data['allot'] = $this->main->showUnshAllot();
+		$this->load->view('index/main_unshallot.html',$data);
+
+	}
 	
+	/**
+	 * [set_allotsh 用于点击审核按钮时将sh标志设成1，完成审核]
+	 */
+	public function set_allotsh()
+	{
+		$aid = $this->uri->segment(3);
+		$this->main->setAllotSh($aid);
+		$this->show_unshallot();	
+	}
 	
 	
 }

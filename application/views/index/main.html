@@ -11,8 +11,10 @@
 			window.UEDITOR_CONFIG.initialFrameWidth = 900;
 			window.UEDITOR_CONFIG.initialFrameHeight = 600;
 			UE.getEditor('content');
-      // var otb = ducument.getElememtById('myTable');
-      // var otr = otb.getElementsByTagName('td');
+      var otr = document.getElememtById('maintr');
+      var otd = document.getElementById('zttd');
+
+
     $(document).ready(function() 
     { 
         $("#myTable").tablesorter(); 
@@ -80,7 +82,7 @@
     </tr>
      <tbody>  
     <?php foreach($main as $m):?>
-    <tr>
+    <tr id="maintr">
     <td align="center">
       <a href="<?php echo site_url('index_main/click_type/'.$m['mid']);?>">
         <?php echo $m['firm']."--".$m['tname']; ?>  
