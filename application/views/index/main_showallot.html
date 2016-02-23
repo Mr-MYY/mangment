@@ -28,7 +28,7 @@
 			<td align="center">调拨时间</td>
 			<td align="center">原地点</td>
 			<td align="center">新地点</td>
-			<!-- <td align="center">操作</td> -->
+			<td align="center">审核状态</td>
 		</tr>	
 		<?php foreach($main as $m): ?>
 		<tr>
@@ -39,11 +39,25 @@
 			<td align="center"><?php echo $m['dbsj']; ?></td>
 			<td align="center"><?php echo $m['oldplace']; ?></td>
 			<td align="center"><?php echo $m['newplace']; ?></td>
-			<!-- <td align="center"><a href="<?php  ?>">[删除]</a></td> -->
+			<td align="center">
+			<?php 
+			switch ($m['sh'])
+          	{
+	            case 0:
+	            echo "未审核";
+	            break;
+
+	            case 1:
+	            echo "已审核";
+	            break;
+	        }
+            ?>
+
+            </td>
 		</tr>	
 		<?php endforeach;  ?>
 		<tr>
-			<td colspan="7" align="center"><input type="button" value="返回首页" class="input_button" onclick="window.location.href='<?php echo site_url('index_main/main');?>'"></td>
+			<td colspan="8" align="center"><input type="button" value="返回首页" class="input_button" onclick="window.location.href='<?php echo site_url('index_main/main');?>'"></td>
 		</tr>
 
 			

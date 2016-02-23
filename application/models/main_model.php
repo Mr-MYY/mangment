@@ -97,7 +97,7 @@ class Main_model extends CI_Model
 	public function detailallot($mid)
 	{
 		$this->db->select('type.firm,type.tname,main.xhgg,main.sn,
-			main.zcbh,allot.dbsj,allot.aid');
+			main.zcbh,allot.dbsj,allot.aid,allot.sh');
 		$this->db->select ('(select pname from t_place where pid = t_allot.oldpid) as oldplace');
 		$this->db->select ('(select pname from t_place where pid = t_allot.newpid) as newplace');	
 		$this->db->join('main','main.mid = allot.mid');
